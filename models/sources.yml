@@ -5,6 +5,9 @@ sources:
     database: LOAD
     schema: GOOGLE_DRIVE
     tables:
-      - name: RETURNS
-      - name: HR_QUITS
 
+      - name: EXPENSES
+      - name: HR_JOINS
+      - name: HR_QUITS
+      - name: RETURNS
+# >>>>>>> db09163c859e1b38d3e61afc32d891525958a8e1
