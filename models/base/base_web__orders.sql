@@ -4,7 +4,11 @@ SELECT
     CLIENT_NAME AS client_name,
     ORDER_AT AS order_ts,
     LOWER(TRIM(PAYMENT_METHOD)) AS payment_method,
-    TRY_CAST(SHIPPING_COST AS DOUBLE) AS shipping_cost,
+
+    TRY_CAST(
+        REPLACE(SHIPPING_COST, 'USD ', '') 
+    AS DOUBLE) AS shipping_cost,
+
     TAX_RATE AS tax_rate,
     LOWER(TRIM(STATE)) AS state,
     "_fivetran_synced"
