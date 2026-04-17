@@ -1,19 +1,32 @@
-SELECT
-    ORDER_ID AS order_id,
-    SESSION_ID AS session_id,
-    CLIENT_NAME AS client_name,
-    ORDER_AT AS order_ts,
-    LOWER(TRIM(PAYMENT_METHOD)) AS payment_method,
+WITH ranked AS (
 
-    TRY_CAST(
-        REPLACE(SHIPPING_COST, 'USD ', '') 
-    AS DOUBLE) AS shipping_cost,
+    SELECT
+        ORDER_ID AS order_id,
+        SESSION_ID AS session_id,
+        CLIENT_NAME AS client_name,
+        ORDER_AT AS order_ts,
+        LOWER(TRIM(PAYMENT_METHOD)) AS payment_method,
 
-    TAX_RATE AS tax_rate,
-    LOWER(TRIM(STATE)) AS state,
-    "_fivetran_synced"
+        TRY_CAST(
+            REPLACE(SHIPPING_COST, 'USD ', '') 
+        AS DOUBLE) AS shipping_cost,
 
-FROM {{ source('web_schema', 'ORDERS') }}
+        TAX_RATE AS tax_rate,
+        LOWER(TRIM(STATE)) AS state,
+        "_fivetran_synced",
 
-WHERE ORDER_AT IS NOT NULL
-AND "_fivetran_deleted" = FALSE
+        ROW_NUMBER() OVER (
+            PARTITION BY ORDER_ID
+            ORDER BY ORDER_AT
+        ) AS rn
+
+    FROM {{ source('web_schema', 'ORDERS') }}
+
+    WHERE ORDER_AT IS NOT NULL
+    AND "_fivetran_deleted" = FALSE
+
+)
+
+SELECT *
+FROM ranked
+WHERE rn = 1
