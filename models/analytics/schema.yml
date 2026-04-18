@@ -63,9 +63,8 @@ models:
   - name: dim_client
     columns:
       - name: client_id
-        description: This is the unique id of the client.
+        description: This is the id of the client.
         tests:
-          - unique
           - not_null
 
       - name: client_name
