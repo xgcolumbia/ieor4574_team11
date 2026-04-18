@@ -1,0 +1,113 @@
+models:
+  - name: dim_item
+    columns:
+      - name: item_id
+        description: This is the unique id of the item.
+        tests:
+          - unique
+          - not_null
+          
+      - name: item_name
+        description: This is the name of the item.
+
+      - name: price_per_unit
+        description: This is the price of the item per unit.
+
+  - name: fact_order
+    columns:
+      - name: order_id
+        description: This is the unique id of the order.
+        tests:
+          - unique
+          - not_null
+
+      - name: session_id
+        description: This is the id of the session when the order was placed.
+        tests:
+          - unique
+          - not_null
+
+      - name: client_name
+        description: This is the name of the client.
+
+      - name: order_ts
+        description: This is the timestamp when the order was placed.
+
+      - name: order_date
+        description: This is the date of the order.
+
+      - name: payment_method
+        description: This is the payment method used for the order.
+
+      - name: shipping_cost
+        description: This is the shipping cost of the order.
+
+      - name: tax_rate
+        description: This is the tax rate applied to the order.
+
+      - name: state
+        description: This is the state where the order was placed.
+
+      - name: returned_at
+        description: This is the date when the order was returned.
+
+      - name: has_returned_flag
+        description: This indicates whether the order was returned.
+
+      - name: is_refunded
+        description: This indicates whether the order was refunded.
+
+      - name: return_days_after_order
+        description: This is the number of days between order and return.
+
+  - name: dim_client
+    columns:
+      - name: client_id
+        description: This is the unique id of the client.
+        tests:
+          - unique
+          - not_null
+
+      - name: client_name
+        description: This is the name of the client.
+
+      - name: os
+        description: This is the operating system used by the client.
+
+      - name: ip
+        description: This is the IP address of the client.
+
+      - name: state
+        description: This is the state of the client.
+
+  - name: dim_employee
+    columns:
+      - name: employee_id
+        description: This is the unique id of the employee.
+        tests:
+          - unique
+          - not_null
+
+      - name: hire_date
+        description: This is the hire date of the employee.
+
+      - name: name
+        description: This is the name of the employee.
+
+      - name: city
+        description: This is the city of the employee.
+
+      - name: address
+        description: This is the address of the employee.
+
+      - name: title
+        description: This is the job title of the employee.
+
+      - name: annual_salary
+        description: This is the annual salary of the employee.
+
+      - name: quit_date
+        description: This is the date when the employee left the company.
+
+      - name: tenure_days
+        description: This is the number of days the employee worked.
