@@ -7,6 +7,11 @@ sources:
     tables:
 
       - name: EXPENSES
+        config:
+          freshness:
+            warn_after: {count: 1, period: day}
+            error_after: {count: 5, period: day}
+          loaded_at_field: _fivetran_synced
       - name: HR_JOINS
       - name: HR_QUITS
       - name: RETURNS
@@ -21,4 +26,4 @@ sources:
       - name: PAGE_VIEWS
       - name: ITEM_VIEWS
 
-# >>>>>>> db09163c859e1b38d3e61afc32d891525958a8e1
+
