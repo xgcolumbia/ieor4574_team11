@@ -19,7 +19,7 @@ sources:
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
-          # loaded_at_field: _FIVETRAN_SYNCED
+          loaded_at_field: '"_FIVETRAN_SYNCED"'
 
       - name: HR_JOINS
         description: This table contains employee join records.
