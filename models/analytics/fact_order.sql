@@ -14,5 +14,11 @@ SELECT
         WHEN returned_at IS NOT NULL THEN TRUE
         ELSE FALSE
     END AS has_returned_flag,
-    is_refunded
+    is_refunded,
+    CASE
+        WHEN returned_at IS NOT NULL
+        THEN DATEDIFF('day', CAST(order_ts AS DATE), returned_at)
+        ELSE NULL
+    END AS return_days_after_order
 FROM DEV.XINAN_INTERMEDIATE.INT_FACT_ORDER
+
