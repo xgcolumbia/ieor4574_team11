@@ -11,12 +11,25 @@ WITH orders AS (
     FROM DEV.SABRINA_BASE.BASE_WEB__ORDERS
 ),
 
+returns_dedup AS (
+    SELECT
+        order_id,
+        returned_at,
+        is_refunded,
+        ROW_NUMBER() OVER (
+            PARTITION BY order_id
+            ORDER BY returned_at ASC
+        ) AS rn
+    FROM DEV.XIXI_BASE.BASE_GOOGLE__RETURNS
+),
+
 returns AS (
     SELECT
         order_id,
         returned_at,
         is_refunded
-    FROM DEV.XIXI_BASE.BASE_GOOGLE__RETURNS
+    FROM returns_dedup
+    WHERE rn = 1
 )
 
 SELECT
