@@ -33,7 +33,7 @@ models:
       - name: tenure_days
         description: This is the number of days the employee worked.
 
- - name: dim_client
+  - name: dim_client
     description: This table contains client information.
     columns:
       - name: client_id
