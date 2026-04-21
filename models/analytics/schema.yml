@@ -1,85 +1,7 @@
 models:
-  - name: dim_item
-    columns:
-      - name: item_id
-        description: This is the unique id of the item.
-        tests:
-          - unique
-          - not_null
-          
-      - name: item_name
-        description: This is the name of the item.
-
-      - name: price_per_unit
-        description: This is the price of the item per unit.
-
-  - name: fact_order
-    columns:
-      - name: order_id
-        description: This is the unique id of the order.
-        tests:
-          - unique
-          - not_null
-
-      - name: session_id
-        description: This is the id of the session when the order was placed.
-        tests:
-          - unique
-          - not_null
-
-      - name: client_name
-        description: This is the name of the client.
-
-      - name: order_ts
-        description: This is the timestamp when the order was placed.
-
-      - name: order_date
-        description: This is the date of the order.
-
-      - name: payment_method
-        description: This is the payment method used for the order.
-
-      - name: shipping_cost
-        description: This is the shipping cost of the order.
-
-      - name: tax_rate
-        description: This is the tax rate applied to the order.
-
-      - name: state
-        description: This is the state where the order was placed.
-
-      - name: returned_at
-        description: This is the date when the order was returned.
-
-      - name: has_returned_flag
-        description: This indicates whether the order was returned.
-
-      - name: is_refunded
-        description: This indicates whether the order was refunded.
-
-      - name: return_days_after_order
-        description: This is the number of days between order and return.
-
-  - name: dim_client
-    columns:
-      - name: client_id
-        description: This is the id of the client.
-        tests:
-          - not_null
-
-      - name: client_name
-        description: This is the name of the client.
-
-      - name: os
-        description: This is the operating system used by the client.
-
-      - name: ip
-        description: This is the IP address of the client.
-
-      - name: state
-        description: This is the state of the client.
 
   - name: dim_employee
+    description: This table contains employee information.
     columns:
       - name: employee_id
         description: This is the unique id of the employee.
@@ -110,8 +32,10 @@ models:
 
       - name: tenure_days
         description: This is the number of days the employee worked.
-  
+
+
   - name: fact_sessions
+    description: This table contains one row per website session and summarizes user behavior.
     columns:
       - name: session_id
         description: This is the unique id of the session.
@@ -139,4 +63,65 @@ models:
 
       - name: session_stage
         description: This is the final stage of the session (e.g. bounce, cart, purchased).
-    
+
+
+  - name: dim_item
+    description: This table contains one row per item sold on the website.
+    columns:
+      - name: item_id
+        description: This is the unique id of the item.
+        tests:
+          - unique
+          - not_null
+
+      - name: item_name
+        description: This is the name of the item.
+
+      - name: price_per_unit
+        description: This is the price of the item per unit.
+
+
+  - name: fact_order
+    description: This table contains one row per order and summarizes order details.
+    columns:
+      - name: order_id
+        description: This is the unique id of the order.
+        tests:
+          - unique
+          - not_null
+
+      - name: session_id
+        description: This is the session id associated with the order.
+
+      - name: client_name
+        description: This is the name of the client who placed the order.
+
+      - name: order_ts
+        description: This is the timestamp when the order was placed.
+
+      - name: order_date
+        description: This is the date when the order was placed.
+
+      - name: payment_method
+        description: This is the payment method used for the order.
+
+      - name: shipping_cost
+        description: This is the shipping cost of the order.
+
+      - name: tax_rate
+        description: This is the tax rate applied to the order.
+
+      - name: state
+        description: This is the state where the order was placed.
+
+      - name: returned_at
+        description: This is the timestamp when the order was returned.
+
+      - name: has_returned_flag
+        description: This indicates whether the order was returned.
+
+      - name: is_refunded
+        description: This indicates whether the order was refunded.
+
+      - name: return_days_after_order
+        description: This is the number of days between order and return.
