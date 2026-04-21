@@ -1,6 +1,5 @@
 models:
   - name: dim_item
-    description: gggggg
     columns:
       - name: item_id
         description: This is the unique id of the item.
@@ -111,3 +110,33 @@ models:
 
       - name: tenure_days
         description: This is the number of days the employee worked.
+  
+  - name: fact_sessions
+    columns:
+      - name: session_id
+        description: This is the unique id of the session.
+        tests:
+          - unique
+          - not_null
+
+      - name: client_id
+        description: This is the id of the client for the session.
+
+      - name: session_ts
+        description: This is the timestamp when the session started.
+
+      - name: viewed_shop_plants
+        description: This indicates whether the user viewed shop plants.
+
+      - name: viewed_item
+        description: This indicates whether the user viewed an item.
+
+      - name: added_to_cart
+        description: This indicates whether the user added an item to the cart.
+
+      - name: purchased
+        description: This indicates whether the user made a purchase.
+
+      - name: session_stage
+        description: This is the final stage of the session (e.g. bounce, cart, purchased).
+    
