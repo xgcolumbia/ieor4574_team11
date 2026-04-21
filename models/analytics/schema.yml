@@ -151,14 +151,9 @@ models:
 
 
   - name: daily_finances
-    description: >
-      Final finance table aggregated at the daily level. 
-      It combines revenue components from orders and item views
-      with expense components from Google expense records.
-      The table calculates gross revenue, net revenue, and profit.
+    description: Final finance table aggregated at the daily level. It combines revenue components from orders and item views with expense components from Google expense records. The table calculates gross revenue, net revenue, and profit.
 
     columns:
-
       - name: finance_date
         description: Date of the financial activity.
         tests:
