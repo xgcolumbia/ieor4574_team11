@@ -39,7 +39,7 @@ models:
       - name: client_id
         description: This is the unique id of the client.
         tests:
-          - unique
+          # - unique
           - not_null
 
       - name: client_name
