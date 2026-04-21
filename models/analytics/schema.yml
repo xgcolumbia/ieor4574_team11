@@ -33,6 +33,27 @@ models:
       - name: tenure_days
         description: This is the number of days the employee worked.
 
+ - name: dim_client
+    description: This table contains client information.
+    columns:
+      - name: client_id
+        description: This is the unique id of the client.
+        tests:
+          - unique
+          - not_null
+
+      - name: client_name
+        description: This is the name of the client.
+
+      - name: os
+        description: This is the operating system used by the client.
+
+      - name: ip
+        description: This is the IP address of the client.
+
+      - name: state
+        description: This is the state of the client.
+
 
   - name: fact_sessions
     description: This table contains one row per website session and summarizes user behavior.
