@@ -125,3 +125,66 @@ models:
 
       - name: return_days_after_order
         description: This is the number of days between order and return.
+
+
+
+
+  - name: daily_finances
+    description: >
+      Final finance table aggregated at the daily level. 
+      It combines revenue components from orders and item views
+      with expense components from Google expense records.
+      The table calculates gross revenue, net revenue, and profit.
+
+    columns:
+
+      - name: finance_date
+        description: Date of the financial activity.
+        tests:
+          - unique
+          - not_null
+
+      - name: item_revenue
+        description: Revenue generated from items sold.
+
+      - name: shipping_revenue
+        description: Shipping fees collected from customers.
+
+      - name: tax_amount
+        description: Tax amount calculated from item revenue using the tax rate.
+
+      - name: gross_revenue
+        description: Total revenue before refunds (item + shipping + tax).
+
+      - name: net_revenue
+        description: Revenue after subtracting refunded revenue.
+
+      - name: refunded_revenue
+        description: Total revenue refunded for orders that were refunded.
+
+      - name: order_count
+        description: Number of orders placed on that day.
+
+      - name: refunded_order_count
+        description: Number of orders that were refunded.
+
+      - name: hr_expense
+        description: HR related expenses recorded for the day.
+
+      - name: tech_tool_expense
+        description: Technology tool related expenses.
+
+      - name: warehouse_expense
+        description: Warehouse operation expenses.
+
+      - name: other_expense
+        description: Miscellaneous expenses not categorized elsewhere.
+
+      - name: total_expense
+        description: Total expenses recorded for the day.
+
+      - name: profit
+        description: Net revenue minus total expenses.
+
+      - name: avg_order_value
+        description: Average revenue per order for the day.
