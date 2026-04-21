@@ -1,5 +1,6 @@
 models:
   - name: dim_item
+    description: gggggg
     columns:
       - name: item_id
         description: This is the unique id of the item.
