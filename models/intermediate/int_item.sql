@@ -7,7 +7,7 @@ WITH item_session_rollup AS (
         MAX(price_per_unit) AS price_per_unit,
         SUM(add_to_cart_quantity) AS add_to_cart_quantity,
         SUM(remove_from_cart_quantity) AS remove_from_cart_quantity
-    FROM DEV.YITONG_BASE.BASE_WEB__ITEM_VIEWS
+    FROM {{ ref('base_web__item_views') }}
     WHERE item_name IS NOT NULL
     GROUP BY
         session_id,

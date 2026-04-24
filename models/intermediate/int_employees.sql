@@ -8,6 +8,6 @@ SELECT
     j.title,
     j.annual_salary,
     q.quit_date
-FROM DEV.XINAN_BASE.BASE_GOOGLE__HR_JOINS j
+FROM {{ ref('base_google__hr_joins') }} j
 LEFT JOIN {{ref('base_google__hr_quits')}} q
     ON j.employee_id = q.employee_id
