@@ -15,10 +15,10 @@ WITH session_flags AS (
 
     FROM {{ ref('base_web__sessions') }} s
 
-    LEFT JOIN DEV.YITONG_BASE.BASE_WEB__PAGE_VIEWS pv
+    LEFT JOIN {{ ref('base_web__page_views') }} pv
         ON s.session_id = pv.session_id
 
-    LEFT JOIN DEV.YITONG_BASE.BASE_WEB__ITEM_VIEWS iv
+    LEFT JOIN {{ ref('base_web__item_views') }} iv
         ON s.session_id = iv.session_id
 
     LEFT JOIN {{ ref('base_web__orders') }} o
