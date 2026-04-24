@@ -23,27 +23,15 @@ sources:
 
       - name: HR_JOINS
         description: This table contains employee join records.
-        # config:
-        #   freshness:
-        #     warn_after: {count: 1, period: day}
-        #     error_after: {count: 5, period: day}
-        #   loaded_at_field: _fivetran_synced
+
 
       - name: HR_QUITS
         description: This table contains employee quit records.
-        # config:
-        #   freshness:
-        #     warn_after: {count: 1, period: day}
-        #     error_after: {count: 5, period: day}
-        #   loaded_at_field: _fivetran_synced
+
 
       - name: RETURNS
         description: This table contains order return records.
-        # config:
-        #   freshness:
-        #     warn_after: {count: 1, period: day}
-        #     error_after: {count: 5, period: day}
-        #   loaded_at_field: _fivetran_synced
+
       
   - name: web_schema
     database: LOAD
@@ -62,28 +50,14 @@ sources:
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 5, period: day}
-          # loaded_at_field: _fivetran_synced
 
       - name: ORDERS
         description: This table contains website order records.
-        # config:
-        #   freshness:
-        #     warn_after: {count: 1, period: day}
-        #     error_after: {count: 5, period: day}
-        #   loaded_at_field: _fivetran_synced
+
 
       - name: PAGE_VIEWS
         description: This table contains website page view records.
-        # config:
-        #   freshness:
-        #     warn_after: {count: 1, period: day}
-        #     error_after: {count: 5, period: day}
-        #   loaded_at_field: _fivetran_synced
+
 
       - name: ITEM_VIEWS
         description: This table contains website item view records.
-        # config:
-        #   freshness:
-        #     warn_after: {count: 1, period: day}
-        #     error_after: {count: 5, period: day}
-        #   loaded_at_field: _fivetran_synced
