@@ -1,4 +1,4 @@
-{{ config(materialized='view') }}
+-- {{ config(materialized='view') }}
 SELECT
     MD5(item_name) AS item_id,
     item_name,
