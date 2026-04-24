@@ -20,5 +20,5 @@ SELECT
         THEN DATEDIFF('day', CAST(order_ts AS DATE), returned_at)
         ELSE NULL
     END AS return_days_after_order
-FROM DEV.XINAN_INTERMEDIATE.INT_FACT_ORDER
+FROM {{ ref('int_fact_order') }}
 

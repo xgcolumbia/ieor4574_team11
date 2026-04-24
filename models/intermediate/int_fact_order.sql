@@ -8,7 +8,7 @@ WITH orders AS (
         shipping_cost,
         tax_rate,
         state
-    FROM DEV.SABRINA_BASE.BASE_WEB__ORDERS
+    FROM {{ ref('base_web__orders') }}
 ),
 
 returns_dedup AS (
@@ -20,7 +20,7 @@ returns_dedup AS (
             PARTITION BY order_id
             ORDER BY returned_at ASC
         ) AS rn
-    FROM DEV.XIXI_BASE.BASE_GOOGLE__RETURNS
+    FROM {{ ref('base_google__returns') }}
 ),
 
 returns AS (

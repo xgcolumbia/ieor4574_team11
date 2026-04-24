@@ -13,6 +13,6 @@ SELECT
         o.TAX_RATE,
         o.STATE
 
-    FROM DEV.SABRINA_BASE.BASE_WEB__SESSIONS s
-    LEFT JOIN DEV.SABRINA_BASE.BASE_WEB__ORDERS o
+    FROM {{ ref('base_web__sessions') }} s
+    LEFT JOIN {{ ref('base_web__orders') }} o
         ON s.SESSION_ID = o.SESSION_ID
