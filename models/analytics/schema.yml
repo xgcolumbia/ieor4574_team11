@@ -147,6 +147,18 @@ models:
       - name: return_days_after_order
         description: This is the number of days between order and return.
 
+      - name: gross_item_revenue
+        description: This is the estimated item revenue based on add-to-cart quantity multiplied by price per unit. Note this is an approximation as it uses cart data rather than confirmed purchase data.
+
+      - name: revenue_before_tax
+        description: This is the gross item revenue plus shipping cost, before tax is applied.
+
+      - name: total_revenue
+        description: This is the total revenue including items, shipping, and tax.
+
+      - name: tax_amount
+        description: This is the tax amount calculated as gross item revenue multiplied by tax rate.
+
 
 
 
