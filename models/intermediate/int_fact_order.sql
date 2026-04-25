@@ -30,6 +30,14 @@ returns AS (
         is_refunded
     FROM returns_dedup
     WHERE rn = 1
+),
+
+item_revenue AS (
+    SELECT
+        session_id,
+        SUM(price_per_unit * add_to_cart_quantity) AS gross_item_revenue
+    FROM {{ ref('base_web__item_views') }}
+    GROUP BY session_id
 )
 
 SELECT
@@ -42,7 +50,14 @@ SELECT
     o.tax_rate,
     o.state,
     r.returned_at,
-    COALESCE(r.is_refunded, FALSE) AS is_refunded
+    COALESCE(r.is_refunded, FALSE)            AS is_refunded,
+    COALESCE(iv.gross_item_revenue, 0)        AS gross_item_revenue,
+    COALESCE(iv.gross_item_revenue, 0)
+        + o.shipping_cost                     AS revenue_before_tax,
+    (COALESCE(iv.gross_item_revenue, 0)
+        + o.shipping_cost) * (1 + o.tax_rate) AS total_revenue
 FROM orders o
 LEFT JOIN returns r
     ON o.order_id = r.order_id
+LEFT JOIN item_revenue iv
+    ON o.session_id = iv.session_id
