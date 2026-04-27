@@ -85,6 +85,40 @@ models:
       - name: session_stage
         description: This is the final stage of the session (e.g. bounce, cart, purchased).
 
+  - name: fact_session_item
+    description: This table contains one row per session and item combination, summarizing item view and cart activity.
+    columns:
+      - name: session_id
+        description: This is the session id associated with the item view.
+        tests:
+          - not_null
+
+      - name: item_name
+        description: This is the name of the item viewed.
+        tests:
+          - not_null
+
+      - name: first_item_view_ts
+        description: This is the timestamp of the first time the item was viewed in the session.
+
+      - name: last_item_view_ts
+        description: This is the timestamp of the last time the item was viewed in the session.
+
+      - name: price_per_unit
+        description: This is the price of the item per unit.
+
+      - name: add_to_cart_quantity
+        description: This is the total quantity of the item added to cart during the session.
+
+      - name: remove_from_cart_quantity
+        description: This is the total quantity of the item removed from cart during the session.
+
+      - name: net_cart_quantity
+        description: This is the net quantity of the item remaining in cart after additions and removals.
+
+      - name: item_revenue
+        description: This is the estimated revenue for the item, calculated as net cart quantity multiplied by price per unit.
+
 
   - name: dim_item
     description: This table contains one row per item sold on the website.
